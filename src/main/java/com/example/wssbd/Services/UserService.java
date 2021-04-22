@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.wssbd.Domain.User;
 import com.example.wssbd.Repository.UserRepository;
 import com.example.wssbd.Services.Exception.ObjectNotFound;
+import com.example.wssbd.dto.UserDTO;
 
 @Service
 public class UserService {
@@ -23,5 +24,12 @@ public class UserService {
 		Optional<User> user = repo.findById(id);
 		return user.orElseThrow(() -> new ObjectNotFound("Objeto não encontrado"));
 		
+	}
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	public User fromDTO(UserDTO objDTO)
+	{
+		return new User(objDTO.getId(),objDTO.getNome(),objDTO.getEmail());
 	}
 }
