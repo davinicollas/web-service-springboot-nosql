@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -15,6 +16,8 @@ public class User implements Serializable{
 	private String id;
 	private String nome;
 	private String email;
+	/*So carregara os post caso seja solicitado*/
+	@DBRef(lazy = true)
 	private List<Post> post =  new ArrayList<>();
 	public User() {}
 	public User(String id, String nome, String email) {

@@ -27,6 +27,7 @@ public class Instatiation implements CommandLineRunner {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		userRepository.deleteAll();
+		postRepository.deleteAll();
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
@@ -35,6 +36,9 @@ public class Instatiation implements CommandLineRunner {
 		Post pos1 = new Post(null,sdf.parse("21/03/2018"), "Partiu Viagem","Vou viajar para São Paulo. Abraços!", new AuthorDTO (maria ));
 		Post pos2 = new Post(null,sdf.parse("23/03/2018"), "Bom Dia","Acordei feliz hoje!", new AuthorDTO (maria ) );
 		postRepository.saveAll(Arrays.asList(pos1,pos2));
+		
+		maria.getPost().addAll(Arrays.asList(pos1,pos2));
+		userRepository.save(maria);
 	}
 	
 
