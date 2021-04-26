@@ -5,22 +5,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Post implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
 	private String id;
 	private Date data;
 	private String title;
 	private String body;
 	private User user;
 	private List<Comment> comment = new ArrayList<>();
-	public Post(String id, Date data, String title, String body) {
+	public Post(String id, Date data, String title, String body, User user) {
 		this.id = id;
 		this.data = data;
 		this.title = title;
 		this.body = body;
+		this.user = user;
 	}
 	public String getId() {
 		return id;
