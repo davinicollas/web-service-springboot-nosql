@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.wssbd.dto.AuthorDTO;
+import com.example.wssbd.dto.ComentDTO;
 
 @Document
 public class Post implements Serializable{
@@ -22,7 +23,8 @@ public class Post implements Serializable{
 	private String title;
 	private String body;
 	private AuthorDTO user;
-	private List<Comment> comment = new ArrayList<>();
+	
+	private List<ComentDTO> comment = new ArrayList<>();
 	public Post(String id, Date data, String title, String body, AuthorDTO user) {
 		this.id = id;
 		this.data = data;
@@ -59,6 +61,13 @@ public class Post implements Serializable{
 	}
 	public void setUser(AuthorDTO user) {
 		this.user = user;
+	}
+	
+	public List<ComentDTO> getComment() {
+		return comment;
+	}
+	public void setComment(List<ComentDTO> comment) {
+		this.comment = comment;
 	}
 	@Override
 	public int hashCode() {
