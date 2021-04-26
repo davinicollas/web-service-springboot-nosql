@@ -12,6 +12,7 @@ import com.example.wssbd.Domain.Post;
 import com.example.wssbd.Domain.User;
 import com.example.wssbd.Repository.PostRepository;
 import com.example.wssbd.Repository.UserRepository;
+import com.example.wssbd.dto.AuthorDTO;
 @Configuration
 public class Instatiation implements CommandLineRunner {
 	@Autowired
@@ -31,8 +32,8 @@ public class Instatiation implements CommandLineRunner {
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		userRepository.saveAll(Arrays.asList(maria,alex,bob));
 
-		Post pos1 = new Post(null,sdf.parse("21/03/2018"), "Partiu Viagem","Vou viajar para São Paulo. Abraços!",maria );
-		Post pos2 = new Post(null,sdf.parse("23/03/2018"), "Bom Dia","Acordei feliz hoje!",maria );
+		Post pos1 = new Post(null,sdf.parse("21/03/2018"), "Partiu Viagem","Vou viajar para São Paulo. Abraços!", new AuthorDTO (maria ));
+		Post pos2 = new Post(null,sdf.parse("23/03/2018"), "Bom Dia","Acordei feliz hoje!", new AuthorDTO (maria ) );
 		postRepository.saveAll(Arrays.asList(pos1,pos2));
 	}
 	
